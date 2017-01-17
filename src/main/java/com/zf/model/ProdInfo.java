@@ -18,7 +18,6 @@ public class ProdInfo {
 	private String descTitle;
 	private String descHtml;
 	
-	
 	public String getProdTitle() {
 		return prodTitle;
 	}
