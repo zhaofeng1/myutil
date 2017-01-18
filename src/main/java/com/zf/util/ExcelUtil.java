@@ -100,7 +100,6 @@ public class ExcelUtil {
 		}
 		if (str.length() > 0) {
 			str = str.substring(0, str.length() - 1);
-			System.out.println("a");
 		}
 		return str;
 	}
