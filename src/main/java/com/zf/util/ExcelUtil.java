@@ -97,9 +97,9 @@ public class ExcelUtil {
 		for(String s:list){
 			str += s +",";
 		}
-		if(str.length()>0){
-			str = str.substring(0,str.length()-1);
-		}
+//		if(str.length()>0){
+//			str = str.substring(0,str.length()-1);
+//		}
 		return str;
 	}
 }
