@@ -30,6 +30,7 @@ public class JsoupTest {
 		String url = "http://www.lazada.co.id/beli-perhiasan/?searchredirect=Aksesoris";
 		try {
 			Document doc = Jsoup.connect(url).timeout(30*1000).post();
+			
 			File f = new File("E:/crawler/errorline.html");
 			FileUtils.writeStringToFile(f, doc.toString());
 //			Elements productE = doc.select("div[data-component=product_list] > div");
