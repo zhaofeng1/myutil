@@ -1,7 +1,15 @@
 package com.zf.util;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 /**
@@ -38,5 +46,48 @@ public class UuidTest {
 			System.out.println(s);
 		}
 
+	}
+
+	/**
+	 * 生成8位uuid 不能重复
+	 */
+	@Test
+	public void generateUuid() {
+		// String path = getClass().getClassLoader().getResource("uuid.txt")
+		// .getPath();
+		String path = System.getProperty("user.dir");
+		path += "/uuid.txt";
+		Set<String> set = new HashSet<String>();
+		int num = 34;// 想要生成的数量
+		try {
+			List<String> list = FileUtils.readLines(new File(path));
+			for (String s : list) {
+				if (StringUtils.isNotBlank(s)) {
+					if (set.contains(s)) {
+						System.out.println("repeat:" + s);
+					} else {
+						set.add(s);
+					}
+				}
+			}
+			System.out.println("set size:" + set.size());
+			String s = "";
+			List<String> resultList = new ArrayList<String>();
+			while (num > 0) {
+				s = generateShortUuid();
+				if (!set.contains(s)) {
+					System.out.println(s);
+					num--;
+					resultList.add(s);
+				}
+			}
+			resultList.add("");
+			FileUtils.writeLines(new File(path), resultList, true);
+
+			// System.out.println("set size:" + set.size());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
