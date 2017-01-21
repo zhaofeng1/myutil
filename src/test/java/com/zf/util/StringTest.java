@@ -1,5 +1,7 @@
 package com.zf.util;
 
+import org.junit.Test;
+
 public class StringTest {
 
 	public static void main(String[] args) {
@@ -21,5 +23,14 @@ public class StringTest {
 		//
 		//
 		// android:
+	}
+
+	@Test
+	public void test() {
+		boolean b = false;
+		System.out.println(b ? "a" : "b");
+
+		String a = null;
+		System.out.println(a.hashCode());
 	}
 }
