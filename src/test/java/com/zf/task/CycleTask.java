@@ -19,7 +19,7 @@ public class CycleTask {
 		if (executorService == null) {
 			executorService = Executors.newScheduledThreadPool(1);
 		}
-		executorService.scheduleAtFixedRate(new MyThread(), 3, 2, TimeUnit.SECONDS);
+		executorService.scheduleAtFixedRate(new MyThread(), 3, 3, TimeUnit.SECONDS);
 
 	}
 
