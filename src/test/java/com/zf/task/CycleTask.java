@@ -15,6 +15,9 @@ public class CycleTask {
 	// 周期任务执行器
 	private ScheduledExecutorService executorService;
 
+	/**
+	 * 开始任务2
+	 */
 	public void startTask() {
 		if (executorService == null) {
 			executorService = Executors.newScheduledThreadPool(1);
