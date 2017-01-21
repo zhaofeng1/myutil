@@ -20,7 +20,6 @@ public class CycleTask {
 			executorService = Executors.newScheduledThreadPool(1);
 		}
 		executorService.scheduleAtFixedRate(new MyThread(), 3, 1, TimeUnit.SECONDS);
-
 	}
 
 	public static void main(String[] args) {
