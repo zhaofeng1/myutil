@@ -1,5 +1,7 @@
 package com.zf.util;
 
+import java.util.UUID;
+
 import org.junit.Test;
 
 public class StringTest {
@@ -29,7 +31,7 @@ public class StringTest {
 	public void test() {
 		boolean b = false;
 		System.out.println(b ? "a" : "b");
-
+		System.out.println(UUID.randomUUID().toString());
 		String a = null;
 		System.out.println(a.hashCode());
 	}
