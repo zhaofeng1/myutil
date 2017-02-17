@@ -1,6 +1,7 @@
 package com.zf.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -220,5 +221,24 @@ public class HttpUtil {
 				response.close();
 		}
 		return responseJsonStr;
+	}
+
+	public static void main(String[] args) {
+		String result = "";
+		try {
+			//			result = requestGet("http://www.google.com", 30000, 30000, "192.241.254.131", 8080);
+			//			result = requestGet("http://www.google.com", 30000, 30000, "localhost", 1080);
+			//			result = requestGet(
+			//					"http://pixel.admobclick.com/v1/ad/click?subsite_id=30222&transaction_id=&id=162&offer_id=13653614&geo=US&aid=a77d7d94853bab75&client_version=&gaid=6c373aba-f756-413f-ac78-f1339f6a1acc&tmark=1487311806351&p=&app_name=server.client&sdk_version=3.1&app_version=1.0.0",
+			//					30000, 30000, "localhost", 1080);
+			result = requestPost(
+					new ArrayList<NameValuePair>(),
+					"http://pixel.admobclick.com/v1/ad/click?subsite_id=30222&transaction_id=&id=162&offer_id=13653614&geo=US&aid=a77d7d94853bab75&client_version=&gaid=6c373aba-f756-413f-ac78-f1339f6a1acc&tmark=1487311806351&p=&app_name=server.client&sdk_version=3.1&app_version=1.0.0",
+					30000, 30000, "localhost", 1080);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(result);
 	}
 }
