@@ -71,6 +71,7 @@ public class ProxyTest {
 		String result = "";
 		BufferedReader in = null;
 		try {
+			//Proxy.Type.SOCKS 同时支持http和https
 			Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(ip, port));
 			URL realUrl = new URL(url);
 			// 打开和URL之间的连接
