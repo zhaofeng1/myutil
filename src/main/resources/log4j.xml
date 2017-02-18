@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>     
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="A" class="org.apache.log4j.ConsoleAppender">
+		<param name="threshold" value="debug" />
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %6p [%F:%L] - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="I" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="./logs/info.log" />
+		<param name="Threshold" value="INFO" />
+		<param name="MaxFileSize" value="20MB" />
+		<param name="MaxBackupIndex" value="5" />
+		<param name="Append" value="true" />
+		<param name="BufferedIO" value="true" />
+		<param name="BufferSize" value="16384" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %6p [%F:%L] - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="E" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="./logs/error.log" />
+		<param name="Threshold" value="ERROR" />
+		<param name="MaxFileSize" value="20MB" />
+		<param name="MaxBackupIndex" value="5" />
+		<param name="Append" value="true" />
+		<!-- <param name="BufferedIO" value="true" />
+		<param name="BufferSize" value="16384" /> -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %6p [%F:%L] - %m%n" />
+		</layout>
+	</appender>
+	<appender name="D" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="./logs/debug.log" />
+		<param name="Threshold" value="DEBUG" />
+		<param name="MaxFileSize" value="20MB" />
+		<param name="MaxBackupIndex" value="5" />
+		<param name="Append" value="true" />
+		<param name="BufferedIO" value="true" />
+		<param name="BufferSize" value="16384" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %6p [%F:%L] - %m%n" />
+		</layout>
+	</appender>
+
+
+	<!--根logger的设置 -->
+	<root>
+	    <!-- <priority value="ERROR" />
+		<appender-ref ref="E" /> -->
+		<priority value="DEBUG" />
+		<appender-ref ref="A" />
+		<appender-ref ref="E" />
+		<appender-ref ref="I" />
+		<appender-ref ref="D" />
+	</root>
+</log4j:configuration>

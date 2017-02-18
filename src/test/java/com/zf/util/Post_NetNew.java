@@ -136,10 +136,16 @@ public class Post_NetNew {
 		//		System.setProperty("http.proxyPort", "1080");
 		//		System.setProperty("http.proxyHost", "207.244.64.132");
 		//		System.setProperty("http.proxyPort", "8080");
+		System.setProperty("proxyHost", "207.244.64.132");
+		System.setProperty("proxyPort", "8080");
+		//		System.setProperty("http.proxyHost", "207.244.64.132");
+		//		System.setProperty("http.proxyPort", "8080");
 		//		System.setProperty("socksProxyHost", "103.30.246.43");
 		//		System.setProperty("socksProxyPort", "10800");
-		System.setProperty("socksProxyHost", "localhost");
-		System.setProperty("socksProxyPort", "1080");
+		//		System.setProperty("socksProxyHost", "localhost");
+		//		System.setProperty("socksProxyPort", "1080");
+		//		System.setProperty("socksProxyHost", "207.244.64.132");
+		//		System.setProperty("socksProxyPort", "8080");
 
 		Map<String, String> map = new HashMap<String, String>();
 		//		map.put("url", "http://www.ip.cn");

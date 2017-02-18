@@ -12,12 +12,12 @@ public class OkHttpTest {
 		Properties prop = System.getProperties();
 		//		prop.setProperty("socksProxyHost", "localhost");
 		//		prop.setProperty("socksProxyPort", "1080");
-		//		prop.setProperty("socksProxyHost", "119.59.123.30");
-		//		prop.setProperty("socksProxyPort", "10800");
+		prop.setProperty("socksProxyHost", "119.59.123.30");
+		prop.setProperty("socksProxyPort", "10800");
 		//		prop.setProperty("socksProxyHost", "210.247.242.71");
 		//		prop.setProperty("socksProxyPort", "10800");
-		prop.setProperty("socksProxyHost", "103.30.246.43");
-		prop.setProperty("socksProxyPort", "10800");
+		//		prop.setProperty("socksProxyHost", "103.30.246.43");
+		//		prop.setProperty("socksProxyPort", "10800");
 		//		prop.setProperty("socksProxyHost", "103.12.211.226");
 		//		prop.setProperty("socksProxyPort", "10800");
 		//		prop.setProperty("socksProxyHost", "52.66.4.48");
@@ -41,7 +41,7 @@ public class OkHttpTest {
 		try {
 			//			System.out.println(getResponseCode("http://www.google.com"));
 			//			System.out.println(getResponseCode("http://ip.com"));
-			okhttpGet("http://tracking.crobo.com/aff_c?offer_id=21553&aff_id=1478&aff_sub2=P6P49R4873200591858716615&aff_sub=3181");
+			okhttpGet("http://apps.applift.com/aff_c?offer_id=26875&aff_id=23425&aff_sub4=1012221&source=shareit&aff_sub=shareit&aff_sub2=12701102301011284411487382185100&aff_sub3=10032_12701102301011284411487382185100_US_6056163_0.42_463&android_id=755bfedb-108d-4e69-a270-087f2914ba41");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
