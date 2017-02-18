@@ -56,7 +56,7 @@ public class ProxyTest {
 		//		list.add(new IpProxy("192.208.184.185", 80));
 		//		list.add(new IpProxy("localhost", 1080));
 		list.add(new IpProxy("103.30.246.43", 10800));
-		//		list.add(new IpProxy("138.197.197.75", 8080));
+		list.add(new IpProxy("144.217.201.15", 3128));
 		//		String url = "http://www.baidu.com";
 		//		String url = "http://www.google.com";
 		String url = "http://tracking.crobo.com/aff_c?offer_id=21553&aff_id=1478&aff_sub2=P6P49R4873200591858716615&aff_sub=3181";
