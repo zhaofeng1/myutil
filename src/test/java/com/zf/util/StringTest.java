@@ -9,27 +9,6 @@ import org.junit.Test;
 
 public class StringTest {
 
-	public static void main(String[] args) {
-		// ios:
-		// 200*200
-		// 210*140
-		// 250*200
-		// 250*250
-		// 532*108
-		// 600*400
-		// 640*100
-		// 640*120
-		// 640*160
-		// 640*240
-		// 640x744
-		// 640x920
-		// 640*1136
-		// 720x1038
-		//
-		//
-		// android:
-	}
-
 	@Test
 	public void test() {
 		boolean b = false;
@@ -60,5 +39,27 @@ public class StringTest {
 		//		for (String s : strs) {
 		//			System.out.println(s);
 		//		}
+	}
+
+	@Test
+	public void testSplit() {
+		String str = "Nantong Shi (Chongchuan Qu)";
+		str = "Beijing (Haidian Qu)";
+		System.out.println(str.contains("("));
+		String city = str.substring(0, str.indexOf("(")).trim();
+		//		if (city.contains("Shi")) {
+		//			
+		//		}
+		System.out.println(city);
+		String area = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
+		System.out.println(area);
+	}
+
+	/**
+	 * 中文
+	 */
+	@Test
+	public void testChinese() {
+
 	}
 }

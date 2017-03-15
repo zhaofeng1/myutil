@@ -1,4 +1,4 @@
-package com.zf.model;
+package com.zf.util.fastjson;
 
 /**
  * 测试
@@ -10,12 +10,22 @@ public class People {
 
 	private String name;
 
+	private int flag;
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 
 }
