@@ -48,7 +48,7 @@ public class JedisTest {
 
 	public Jedis getJedis() {
 		Jedis jedis = jedisPool.getResource();
-		jedis.select(2);
+		jedis.select(0);
 		return jedis;
 	}
 
