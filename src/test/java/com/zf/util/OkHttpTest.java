@@ -54,7 +54,12 @@ public class OkHttpTest {
 		//		String userAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
 		Request request = new Request.Builder().url(url).header("User-Agent", userAgent).build();
 
-		//		Request request = new Request.Builder().url(url).build();
+		//		client.setConnectTimeout(600, TimeUnit.SECONDS);
+		//		client.setReadTimeout(600, TimeUnit.SECONDS);
+		//		MediaType media = MediaType.parse("application/json; charset=utf-8");
+		//		RequestBody body = RequestBody.create(media, JSON.toJSONString(map));
+		//		post
+		//		Request request1 = new Request.Builder().url(url).header("User-Agent", userAgent).post(body).build();
 
 		client.setFollowRedirects(false);
 		Response response = client.newCall(request).execute();
@@ -66,7 +71,6 @@ public class OkHttpTest {
 		System.out.println("ResponseBody: " + response.body().string());
 		System.out.println("location:" + response.header("Location"));
 	}
-
 	//	public static int getResponseCode(String url) throws IOException {
 	//		OkHttpClient okHttpClient = new OkHttpClient();
 	//		okHttpClient.setConnectTimeout(20, TimeUnit.SECONDS);
