@@ -100,4 +100,56 @@ public class SortTest {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test2() {
+		List<People> list = new ArrayList<People>();
+		People p = new People();
+		p.setId(1L);
+		p.setConRate(0.1);
+		People p1 = new People();
+		p1.setId(2L);
+		p1.setConRate(0.9);
+		People p2 = new People();
+		p2.setConRate(0.8);
+		//		p2.setId(1L);
+		People p3 = new People();
+		p3.setId(3L);
+		People p4 = new People();
+		p4.setId(4L);
+		p4.setConRate(0.2);
+		list.add(p);
+		list.add(p1);
+		list.add(p2);
+		list.add(p3);
+		list.add(p4);
+
+		Collections.sort(list, new Comparator<People>() {
+
+			@Override
+			public int compare(People p1, People p2) {
+				Double conRate1 = p1.getConRate() == null ? 0 : p1.getConRate();
+				Double conRate2 = p2.getConRate() == null ? 0 : p2.getConRate();
+				Long id1 = p1.getId() == null ? 0 : p1.getId();
+				Long id2 = p2.getId() == null ? 0 : p2.getId();
+
+				if (conRate1 * id1 > conRate2 * id2) {
+					return -1;
+				} else if (conRate1 * id1 == conRate2 * id2) {
+					return 0;
+				} else {
+					return 1;
+				}
+			}
+
+		});
+		for (People pe : list) {
+			System.out.print(JSON.toJSONString(pe));
+			if (pe.getConRate() != null && pe.getId() != null) {
+				System.out.println(pe.getConRate() * pe.getId());
+			} else {
+				System.out.println();
+			}
+		}
+	}
 }

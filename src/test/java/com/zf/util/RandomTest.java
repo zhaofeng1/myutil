@@ -35,4 +35,22 @@ public class RandomTest {
 		int b = 4;
 		System.out.println(a >= b);
 	}
+
+	/**
+	 * 
+	 */
+	@Test
+	public void test2() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println(new Random().nextInt(2));
+		}
+	}
+
+	@Test
+	public void test3() {
+		Random r = new Random();
+		for (int i = 0; i < 100; i++) {
+			System.out.println(r.nextBoolean());
+		}
+	}
 }

@@ -69,4 +69,13 @@ public class StringTest {
 		System.out.println(s.replace("\n", ""));
 	}
 
+	@Test
+	public void test1() {
+		String str = "123{a}basd";
+		System.out.println(str.contains("{a}"));
+		if (str.contains("{a}")) {
+			System.out.println(str.replace("{a}", "tt"));
+		}
+	}
+
 }
