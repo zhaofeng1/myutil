@@ -22,8 +22,15 @@ public class CycleTask {
 		if (executorService == null) {
 			executorService = Executors.newScheduledThreadPool(1);
 		}
-		executorService.scheduleAtFixedRate(new MyThread(), 3, 3, TimeUnit.SECONDS);
+		long interval = 60 * 60 * 1000;//1 小时
+		long delay = 0;
+		executorService.scheduleAtFixedRate(new MyThread(), 3, 1, TimeUnit.MILLISECONDS);
 
+	}
+
+	public long getDelay() {
+
+		return 0;
 	}
 
 	public static void main(String[] args) {
@@ -31,7 +38,7 @@ public class CycleTask {
 		task.startTask();
 
 		try {
-			Thread.sleep(5 * 60 * 1000);
+			Thread.sleep(100 * 60 * 1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSON;
+
 public class StringTest {
 
 	@Test
@@ -78,4 +80,21 @@ public class StringTest {
 		}
 	}
 
+	@Test
+	public void test2() {
+		String t = "12";
+		String[] array = t.split(",");
+		System.out.println(JSON.toJSONString(array));
+	}
+
+	@Test
+	public void replace() {
+		String payout = "$123";
+		String str = String.valueOf((char) 36);
+		System.out.println(str);
+		if (payout.contains(String.valueOf((char) 36))) {
+			payout = payout.replace(str, "");
+		}
+		System.out.println(payout);
+	}
 }
