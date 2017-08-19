@@ -41,6 +41,7 @@ public class CsvHandle {
 		File file = new File(path);
 		BufferedReader reader = null;
 		List<String> chinaList = new ArrayList<String>();
+
 		try {
 			reader = new BufferedReader(new FileReader(file));
 			String tempString = null;
