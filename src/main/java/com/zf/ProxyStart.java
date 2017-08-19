@@ -15,6 +15,7 @@ public class ProxyStart {
 		String result = "";
 		BufferedReader in = null;
 		String ip = "114.112.64.46";
+
 		int port = 10000;
 		try {
 			Proxy proxy = new Proxy(Proxy.Type.DIRECT.HTTP, new InetSocketAddress(ip, port));
