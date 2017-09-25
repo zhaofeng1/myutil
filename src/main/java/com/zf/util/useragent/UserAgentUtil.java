@@ -49,8 +49,10 @@ public class UserAgentUtil {
 				case ULTRAFONE:
 				case A8:
 				case ZEN:
-					osversion = line.split("version/")[1].split(" ")[0];
-					break;
+					if (line.contains("version/")) {
+						osversion = line.split("version/")[1].split(" ")[0];
+						break;
+					}
 				default:
 					String[] normal = { "android ", "android", "android/", "adr " };
 					for (String split : normal) {
@@ -70,5 +72,10 @@ public class UserAgentUtil {
 			logger.error("bad ua-parse " + line);
 		}
 		return osversion;
+	}
+
+	public static void main(String[] args) {
+		String usa = "dalvik/2.1.0 (linux; u; android 7.0; intex aqua zenith build/nrd90m)";
+		System.out.println(getOsVersion(usa));
 	}
 }
