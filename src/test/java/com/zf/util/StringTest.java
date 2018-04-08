@@ -1,7 +1,10 @@
 package com.zf.util;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +13,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
@@ -169,4 +173,98 @@ public class StringTest {
 	private void handle(List<String> list) {
 		list.add("a");
 	}
+
+	@Test
+	public void test11() {
+		String url = "https://app.appsflyer.com/com.cmplay.dancingline?pid=inplayable_int&c={region}&advertising_id={gaid}&clickid={transaction_id}&af_siteid={affiliate_id}&af_sub_siteid={parameter}";
+	}
+
+	@Test
+	public void test31() {
+		String path = "C:/Users/dell/Desktop/adserver/adapter/tmp";
+		try {
+			List<String> list = FileUtils.readLines(new File(path));
+			for (String s : list) {
+				int i = Integer.valueOf(s.split("\t")[1]);
+				System.out.println(s);
+				System.out.println(s.split("\t")[0] + "\t" + (i + 1));
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void test32() {
+		System.out.println(System.currentTimeMillis());
+	}
+
+	private static Pattern ANDROID_PKG_PATTERN = Pattern.compile("[a-zA-Z0-9_]*\\.[a-zA-Z0-9_\\.]*");
+	private static final Pattern ITUNES_APP_ID_PATTERN = Pattern.compile("([0-9]{1,})");
+
+	@Test
+	public void testPattenAndroidAndIos() {
+		String android_appid = "123.";
+		String ios_appid = "";
+		System.out.println(validateAndroidPkg(android_appid));
+	}
+
+	public static boolean validateAndroidPkg(String pkg) {
+		Matcher m = ANDROID_PKG_PATTERN.matcher(pkg);
+		if (m.find()) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean validateIosPkg(String pkg) {
+		Matcher m = ITUNES_APP_ID_PATTERN.matcher(pkg);
+		if (m.find()) {
+			return true;
+		}
+		return false;
+	}
+
+	@Test
+	public void test33() {
+		String ss = "10914,10982,11200,11202,11210,11220,11230,11250,11260,11270,11290,11300,11310,11320,";
+		for (String s : ss.split(",")) {
+			System.out.println(s);
+			System.out.println(Integer.valueOf(s) + 1);
+		}
+
+	}
+
+	@Test
+	public void test34() {
+		String ss = "30694,30590,30358,30639,30474,30534,30648,30717,30651,30222,30441,30521,30475,30419,30706,30525,30145,30496,30520,30075,30653,30633,30405,30698,30214,30200,30431,30205,30628,30309";
+		for (String s : ss.split(",")) {
+			System.out.println("cat s2sclklocationlog|grep subsite_id=" + s + "|awk  '{print $2}'|head -10 > /export/fhf/zhaofeng/" + s + ".txt");
+		}
+
+	}
+
+	@Test
+	public void test35() {
+		String ss = "http://tracking.vcommission.com/aff_r?offer_id=6964&aff_id=71138&url=https%3A%2F%2Fad.apsalar.com%2Fapi%2Fv1%2Fad%3Fre%3D0%26a%3Dtimesinternet%26i%3Dfree.mobile.internet.data.recharge%26ca%3DVcommission_DB%26an%3DvCommission%26p%3DAndroid%26pl%3DVcommission_DB%26andi%3D%26and1%3D%26s%3D71138%26aifa%3D%26cl%3D%7Bvcomm%7D%26cr%3D6964%26g%3D%7Bgoal_id%7D%26transaction_id%3D10298d13d02eaed6a0840f08aa2068%26h%3De3bad0e63425eeaa710800d9d7bf8215aff2eca1&urlauth=651900837165769317274076733241";
+		System.out.println(URLDecoder.decode(ss));
+
+	}
+
+	@Test
+	public void test36() {
+		String ss = "in|id";
+		System.out.println(JSON.toJSONString(ss.split("\\|")));
+
+	}
+
+	@Test
+	public void test37() {
+		String str = "0.23";
+		System.out.println(str.substring(0, str.length() > 5 ? 5 : str.length()));
+	}
+
+
 }

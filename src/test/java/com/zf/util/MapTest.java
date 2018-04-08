@@ -1,10 +1,14 @@
 package com.zf.util;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.Test;
+
+import com.alibaba.fastjson.JSON;
 
 public class MapTest {
 
@@ -27,5 +31,28 @@ public class MapTest {
 		} else if (map.containsKey("b")) {
 			System.out.println("2");
 		}
+	}
+
+	@Test
+	public void test2() {
+		Map<String, Set<String>> map = new HashMap<String, Set<String>>();
+		Map<String, Double> countryMap = new HashMap<String, Double>();
+		countryMap.put("us", 1.5);
+		countryMap.put("cs", 1.2);
+		countryMap.put("tw", 1.5);
+		countryMap.put("in", 1.5);
+
+		for (String s : countryMap.keySet()) {
+			String value = countryMap.get(s) + "";
+			if (map.containsKey(value)) {
+				map.get(value).add(s);
+			} else {
+				Set<String> temp = new HashSet<String>();
+				temp.add(s);
+				map.put(value, temp);
+			}
+		}
+		System.out.println(JSON.toJSONString(map));
+
 	}
 }

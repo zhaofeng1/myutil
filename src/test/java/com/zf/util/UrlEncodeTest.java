@@ -14,4 +14,10 @@ public class UrlEncodeTest {
 		String result = URLEncoder.encode(str, "gbk");
 		System.out.println(result);
 	}
+
+	@Test
+	public void test1() throws UnsupportedEncodingException {
+		String url = "http://api.inplayable.com/api/offline/postback?subsite={affiliate_id}&transaction_id={transaction_id}&parameter={parameter}";
+		System.out.println(URLEncoder.encode(url, "gbk"));
+	}
 }
