@@ -25,4 +25,11 @@ public class IntTest {
 		System.out.println(b);
 		System.out.println(b.intValue());
 	}
+
+	@Test
+	public void test3() {
+		int a = 1400;
+		int b = 500;
+		System.out.println(a / b);
+	}
 }

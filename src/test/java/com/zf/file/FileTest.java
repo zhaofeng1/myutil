@@ -1,8 +1,14 @@
 package com.zf.file;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -10,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +33,7 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 public class FileTest {
 
@@ -114,7 +122,7 @@ public class FileTest {
 	private Map<String, Set<String>> getTempMap() throws IOException {
 		//去新加坡 101 拉nginx 日志
 		//more access.log |grep 'ad/click'|grep subsite_id=30037|head -100 >txt.log
-		Map<String, Set<String>> map = new HashMap<String, Set<String>>();
+		Map<String, Set<String>> map = new HashMap<>();
 		String path = "E:/tmp/nginx_click/txt.log";
 		List<String> list = FileUtils.readLines(new File(path));
 
@@ -222,11 +230,225 @@ public class FileTest {
 	}
 
 	@Test
-	public void statsSubsiteDomain() throws IOException {
-		String path = "E:\\logs\\20180408\\subsite_ref.log";
-		List<String> list =  FileUtils.readLines(new File(path));
-		for(String s :list){
+	public void getFromDir() throws IOException {
+
+		String path = "C:/Users/dell/Desktop/subsite_txt";
+		File f = new File(path);
+
+		File[] fArray = f.listFiles();
+
+		for (File fT : fArray) {
+			//			List<String> lines = FileUtils.readLines(fT, "GBK");
+			List<String> lines = forTest(fT);
+			System.out.println(fT.getName().substring(0, fT.getName().indexOf(".")));
+			for (String s : lines) {
+				System.out.println(s);
+			}
+			System.out.println("");
+		}
+	}
+
+	@Test
+	public void getFromDir1() throws IOException {
+
+		String path = "C:/Users/dell/Desktop/subsite_txt/30075.txt";
+		File f = new File(path);
+		List<String> list = forTest(f);
+		for (String s : list) {
 			System.out.println(s);
 		}
+	}
+
+	@Test
+	public void getFromDir2() throws IOException {
+
+		String path = "E:/logs/tmp/pid2_tid_tmp.txt";
+		File f = new File(path);
+		List<String> list = forTest(f);
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Map<String, Set<String>> map = new HashMap<String, Set<String>>();
+		String day = "";
+		for (String s : list) {
+			if (s.length() > 15) {
+				//				System.out.println(s);
+				String date = s.substring(s.length() - 13, s.length());
+				c.setTimeInMillis(Long.valueOf(date));
+				//				System.out.println(sdf.format(c.getTime()));
+				day = sdf.format(c.getTime());
+				if (!map.containsKey(day)) {
+					map.put(day, new HashSet<String>());
+				}
+				map.get(day).add(s);
+			}
+		}
+		for (String s : map.keySet()) {
+			System.out.println("s:" + s);
+			String str = "";
+			for (String t : map.get(s)) {
+				str += "'" + t + "',";
+			}
+			System.out.println(str.substring(0, str.length() - 1));
+		}
+	}
+
+	private static List<String> forTest(File f) throws IOException {
+		List<String> result = new ArrayList<String>();
+		InputStreamReader read = new InputStreamReader(new FileInputStream(f), "GBK");
+		BufferedReader reader = new BufferedReader(read);
+		String line;
+		while ((line = reader.readLine()) != null) {
+			result.add(line);
+		}
+		return result;
+	}
+
+	@Test
+	public void getFromDir11() throws IOException {
+
+		String path = "E:/logs/subsite_s2s_clk";
+		File f = new File(path);
+
+		File[] fArray = f.listFiles();
+
+		for (File fT : fArray) {
+			//			List<String> lines = FileUtils.readLines(fT, "GBK");
+			List<String> lines = forTest(fT);
+			if (lines.size() == 0) {
+				System.out.println(fT.getName());
+			}
+		}
+	}
+
+	@Test
+	public void getS2sClick() throws IOException {
+		String path = "E:/logs/subsite_s2s_clk";
+		File f = new File(path);
+
+		File[] fArray = f.listFiles();
+		Set<String> set = new HashSet<String>();
+
+		for (File fT : fArray) {
+			List<String> lines = forTest(fT);
+			for (String s : lines) {
+				if (StringUtils.isNotBlank(s)) {
+					String tempStr = s.split("\t")[1];
+					//					System.out.println(tempStr);
+					Map<String, String> tempMap = parseMap(tempStr);
+					System.out.print(tempMap.get("subsite_id") == null ? "" : tempMap.get("subsite_id"));
+					System.out.print("\t");
+					System.out.print(tempMap.get("geo") == null ? "nogeo" : "geo=" + tempMap.get("geo"));
+					System.out.print("\t");
+					System.out.println(tempMap.get("gaid") == null ? "nogaid" : "gaid=" + tempMap.get("gaid"));
+					set.add(tempMap.get("subsite_id"));
+				}
+			}
+		}
+		System.out.println(set.size());
+	}
+
+	/**
+	 * 将参数转为map
+	 * @param param
+	 * @return
+	 */
+	public Map<String, String> parseMap(String param) {
+		Map<String, String> map = new HashMap<String, String>();
+		String[] array = param.split("&");
+		for (String s : array) {
+			String[] keyvalue = s.split("=");
+			if (keyvalue.length == 2) {
+				map.put(keyvalue[0], keyvalue[1] == null ? "" : keyvalue[1]);
+			} else if (keyvalue.length == 1) {
+				map.put(keyvalue[0], "");
+			}
+		}
+		return map;
+	}
+
+	@Test
+	public void getTid() throws IOException {
+		String path = "E:/logs/tmp/tid_0203.txt";
+		File f = new File(path);
+
+		List<String> lines = forTest(f);
+		String str = "";
+		int i = 0;
+		for (String s : lines) {
+			str += "'" + s + "',";
+			i++;
+			if (i > 5000) {
+				System.out.println(str);
+				str = "";
+				i = 0;
+			}
+		}
+	}
+
+	@Test
+	public void getPlacement() throws IOException {
+		String path = "E:/logs/tmp/result1.txt";
+		File f = new File(path);
+		List<String> list = FileUtils.readLines(f);
+		Set<String> set = new HashSet<String>();
+		for (String s : list) {
+			if (s.contains("p63")) {
+				//				System.out.println(s);
+				String[] array = s.split("\\|");
+				JSONObject jsonObj = JSON.parseObject(array[2].trim());
+				System.out.println(jsonObj.getString("p5"));
+				set.add(jsonObj.getString("p5"));
+			}
+		}
+		System.out.println(JSON.toJSONString(set));
+	}
+
+	@Test
+	public void statsSubsiteDomain() throws IOException {
+		String path = "E:\\logs\\20180408\\subsite_ref.log";
+		List<String> list = FileUtils.readLines(new File(path));
+		Map<String, Map<String, AtomicInteger>> map = new HashMap<String, Map<String, AtomicInteger>>();
+		String[] array = null;
+		String subsite = "";
+		String clickurl = "";
+		String domain = "";
+		int errornum = 0;
+		for (String s : list) {
+			array = s.split(" ");
+			if (array != null) {
+				subsite = array[0];
+				clickurl = array[1];
+				URL url = null;
+				try {
+					url = new URL(clickurl);
+				} catch (Exception e) {
+					errornum++;
+					System.out.println("clickurl:" + clickurl);
+				}
+				if (url != null) {
+					domain = url.getHost();
+					if (map.containsKey(domain)) {
+						if (map.get(domain).containsKey(subsite)) {
+							map.get(domain).get(subsite).incrementAndGet();
+						} else {
+							map.get(domain).put(subsite, new AtomicInteger(1));
+						}
+					}else{
+						map.put(domain, new HashMap<String, AtomicInteger>());
+						map.get(domain).put(subsite, new AtomicInteger(1));
+					}
+				}
+				//				System.out.println(JSON.toJSONString(array));
+				//				System.out.println("subsite:" + subsite + ";domian:" + domain);
+				//				break;
+			}
+		}
+		//		System.out.println(JSON.toJSONString(map));
+		for (String s : map.keySet()) {
+			for (String s1 : map.get(s).keySet()) {
+				System.out.println(s + "\t" + s1 + "\t" + map.get(s).get(s1));
+			}
+		}
+		System.out.println("errornum:" + errornum);
 	}
 }
