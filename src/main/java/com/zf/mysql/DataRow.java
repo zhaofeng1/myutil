@@ -128,6 +128,7 @@ public class DataRow {
 
 	}
 
+
 	public String getString(String columnLabel) {
 		Object obj = mapRow.get(columnLabel);
 		if (obj != null)
