@@ -114,7 +114,7 @@ public class FileTest {
 	private Map<String, Set<String>> getTempMap() throws IOException {
 		//去新加坡 101 拉nginx 日志
 		//more access.log |grep 'ad/click'|grep subsite_id=30037|head -100 >txt.log
-		Map<String, Set<String>> map = new HashMap<>();
+		Map<String, Set<String>> map = new HashMap<String, Set<String>>();
 		String path = "E:/tmp/nginx_click/txt.log";
 		List<String> list = FileUtils.readLines(new File(path));
 
@@ -219,5 +219,14 @@ public class FileTest {
 			}
 		}
 		return responseJsonStr;
+	}
+
+	@Test
+	public void statsSubsiteDomain() throws IOException {
+		String path = "E:\\logs\\20180408\\subsite_ref.log";
+		List<String> list =  FileUtils.readLines(new File(path));
+		for(String s :list){
+			System.out.println(s);
+		}
 	}
 }
