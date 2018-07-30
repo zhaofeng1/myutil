@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -255,8 +257,10 @@ public class StringTest {
 
 	@Test
 	public void test36() {
-		String ss = "in|id";
-		System.out.println(JSON.toJSONString(ss.split("\\|")));
+		//		String ss = "in|id";
+		//		System.out.println(JSON.toJSONString(ss.split("\\|")));
+		String ss = "in";
+		System.out.println(JSON.toJSONString(ss.split("\\.")));
 
 	}
 
@@ -266,5 +270,22 @@ public class StringTest {
 		System.out.println(str.substring(0, str.length() > 5 ? 5 : str.length()));
 	}
 
+	@Test
+	public void test38() {
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DAY_OF_YEAR, -5);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println(c.getTimeInMillis());
+		System.out.println(sdf.format(c.getTime()));
+	}
+
+	@Test
+	public void test39() {
+		for (int i = 100000000; i < 150000000; i++) {
+			if (i % 1000000 == 0) {
+				System.out.println(i);
+			}
+		}
+	}
 
 }

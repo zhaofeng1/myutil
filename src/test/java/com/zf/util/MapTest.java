@@ -55,4 +55,13 @@ public class MapTest {
 		System.out.println(JSON.toJSONString(map));
 
 	}
+
+	@Test
+	public void test3() {
+		Map<String, String> map = new HashMap<>();
+		map.put("a", "b");
+		String str = map.get("a");
+		str = "";
+		System.out.println(JSON.toJSONString(map));
+	}
 }

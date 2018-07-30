@@ -27,6 +27,11 @@ public class Md5Test {
 		System.out.println(md5(key + md5(String.valueOf(time))));
 	}
 
+	@Test
+	public void md5Test1() {
+		System.out.println(md5("3bbeb2d3f1e29dd61357268ba56286a0"));
+	}
+
 	/**
 	 * 使用md5的算法进行加密
 	 */

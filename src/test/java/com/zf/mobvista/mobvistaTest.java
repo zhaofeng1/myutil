@@ -25,8 +25,12 @@ public class mobvistaTest {
 		//		String url = "http://3s.mobvista.com/v4.php?m=index&cb=cb12663&time={0}&token={1}";
 		//		String apiKey = "BAM2IGWNJUHAZ5CETRN7";
 		//		String url = "http://3s.mobvista.com/v4.php?m=index&cb=cb12867&time={0}&token={1}";
-		String apiKey = "GZ06YSNTYVLSCRXJSZ59";//10822
-		String url = "http://3s.mobvista.com/v4.php?m=index&cb=cb12465&time={0}&token={1}&offset={2}";
+		//		String apiKey = "GZ06YSNTYVLSCRXJSZ59";//10822
+		//		String url = "http://3s.mobvista.com/v4.php?m=index&cb=cb12465&time={0}&token={1}&offset={2}";
+		String apiKey = "2VMMOHWSXB01VE1RNNRA";//10144
+		String url = "http://3s.mobvista.com/v4.php?m=index&cb=cb9864&time={0}&token={1}&platform=android&offset={2}";
+		//		String apiKey = "CFBMLRDDF8LSYVCZDQFI";//10824
+		//		String url = "http://3s.mobvista.com/v4.php?m=index&cb=cb9864&time={0}&token={1}&platform=android&offset={2}";
 		
 		String token = md5(apiKey + md5(time + ""));
 		System.out.println(time);

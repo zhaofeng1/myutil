@@ -15,5 +15,6 @@ public class UrlTest {
 		URL clickURL = new URL(s);
 		String query = clickURL.getQuery();
 		System.out.println("query:" + query);
+		System.out.println(clickURL.getHost());
 	}
 }

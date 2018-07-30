@@ -451,4 +451,49 @@ public class FileTest {
 		}
 		System.out.println("errornum:" + errornum);
 	}
+
+	@Test
+	public void testTid() throws IOException {
+		String path = "E:/logs/10088.txt";
+		List<String> list = FileUtils.readLines(new File(path));
+		for (String s : list) {
+			if (s.contains("NOT_FOUND_TID")) {
+				System.out.println(s.substring(s.indexOf("transaction_id%3D") + 17, s.indexOf("%26parameter%")));
+			}
+		}
+	}
+
+	@Test
+	public void testClickClk() throws IOException {
+		String path = "E:/logs/clickclk.txt";
+		List<String> list = FileUtils.readLines(new File(path));
+		int i = 0;
+		for (String s : list) {
+			if (!s.contains("source")) {
+				i++;
+				if (i == 1) {
+					System.out.print(s + "\t");
+				} else {
+					System.out.println(s);
+				}
+			} else {
+				i = 0;
+			}
+		}
+	}
+
+	@Test
+	public void testStr() throws IOException {
+		String path = "E:/logs/channel.txt";
+		List<String> list = FileUtils.readLines(new File(path));
+		Map<String, AtomicInteger> map = new HashMap<String, AtomicInteger>();
+		for (String s : list) {
+			if (!map.containsKey(s)) {
+				map.put(s, new AtomicInteger(0));
+			}
+			map.get(s).incrementAndGet();
+		}
+		System.out.println(JSON.toJSONString(map));
+	}
+
 }
