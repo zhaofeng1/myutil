@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.3.2</version>
+			<version>4.5.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -111,8 +111,8 @@
 				<version>2.3.2</version>
 				<configuration>
 					<encoding>utf-8</encoding>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<debug>true</debug>
 					<debuglevel>none</debuglevel>
 				</configuration>

@@ -2,6 +2,7 @@ package com.zf.util;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -63,5 +64,19 @@ public class MapTest {
 		String str = map.get("a");
 		str = "";
 		System.out.println(JSON.toJSONString(map));
+	}
+
+	@Test
+	public void test4() {
+		Map<String, String> map = new HashMap<>();
+		map.put("a", "b");
+		map.put("c", "b");
+		map.put("b", "b");
+		System.out.println(JSON.toJSONString(map));
+		Map<String, String> treemap = new LinkedHashMap();
+		treemap.put("a", "b");
+		treemap.put("c", "b");
+		treemap.put("b", "b");
+		System.out.println(JSON.toJSONString(treemap));
 	}
 }

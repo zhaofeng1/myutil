@@ -17,6 +17,7 @@ public class IntTest {
 	public void test1() {
 
 		System.out.println(Integer.MAX_VALUE);
+		System.out.println(7 * 24 * 60 * 60);
 	}
 
 	@Test

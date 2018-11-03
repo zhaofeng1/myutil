@@ -496,4 +496,101 @@ public class FileTest {
 		System.out.println(JSON.toJSONString(map));
 	}
 
+	@Test
+	public void getSqlFromFile() throws IOException {
+		String path = "E:/logs/offertarget.txt";
+		List<String> list = FileUtils.readLines(new File(path));
+		String offerid = "";
+		String geo = "";
+		String sql = "insert into feed_offer_target(offer_id,app_info_id,code,status,manual,jump_counter) values(%s,1271,'%s','active',1,-1);";
+		String tempSql = "";
+		Set<String> set = new HashSet<String>();
+		for (String s : list) {
+			String[] strArray = s.split("\t");
+			offerid = strArray[0];
+			geo = strArray[1];
+//			set.add(offerid);
+			tempSql = String.format(sql, offerid, geo);
+			System.out.println(tempSql);
+		}
+		//		System.out.println(JSON.toJSONString(set));
+	}
+
+	@Test
+	public void getaid() throws IOException {
+		String path = "E:/logs/offertest/aid.txt";
+		List<String> list = FileUtils.readLines(new File(path));
+		for (String s : list) {
+			if (!s.contains("-")) {
+				System.out.println(s);
+			}
+		}
+
+	}
+
+	@Test
+	public void getOfferGeo() throws IOException {
+		String path = "E:/logs/offertest/offer_geo.txt";
+		List<String> list = FileUtils.readLines(new File(path));
+		for (String s : list) {
+			String[] sArray = s.split(",");
+			System.out.println("already_test_" + sArray[0] + "_" + sArray[1]);
+		}
+
+	}
+
+	@Test
+	public void test26() throws IOException {
+		String path = "E:/logs/handle/tid_handle";
+		List<String> list = FileUtils.readLines(new File(path));
+		for (String s : list) {
+			System.out.println(s.substring(0, s.indexOf("&")));
+		}
+
+	}
+
+	@Test
+	public void test27() throws IOException {
+		String path = "E:/logs/tmp/mytest/offer_geo_payout.txt";
+		List<String> list = FileUtils.readLines(new File(path));
+		Map<String, Set<String>> offergeoMap = new HashMap<String, Set<String>>();
+		Map<String, Set<String>> offerpayoutMap = new HashMap<String, Set<String>>();
+		String updatePayoutSql = "update feed_offers set maxpayout='%s' where id=%s;";
+
+		String updateGeoSql = "insert into feed_offer_target(offer_id,app_info_id,code,status,manual,jump_counter) values(%s,1271,'%s','active',1,-1);";
+		for (String s : list) {
+			String[] sarray = s.split("\t");
+			//			System.out.println(JSON.toJSONString(sarray));
+			String geo = sarray[0];
+			String payout = sarray[2];
+			payout = payout.substring(1).trim();
+			String offerid = sarray[3];
+			
+			if (!offerpayoutMap.containsKey(offerid)) {
+				offerpayoutMap.put(offerid, new HashSet<String>());
+			}
+			offerpayoutMap.get(offerid).add(payout);
+
+			if (!offergeoMap.containsKey(offerid)) {
+				offergeoMap.put(offerid, new HashSet<String>());
+			}
+			offergeoMap.get(offerid).add(geo);
+
+		}
+		//		System.out.println(JSON.toJSONString(offerpayoutMap));
+
+		//		for(String s:offerpayoutMap.keySet()){
+		//			for (String payout : offerpayoutMap.get(s)) {
+		//				System.out.println(String.format(updatePayoutSql, payout, s));
+		//			}
+		//		}
+
+		for (String s : offergeoMap.keySet()) {
+			for (String geo : offergeoMap.get(s)) {
+				System.out.println(String.format(updateGeoSql, s, geo));
+			}
+		}
+
+	}
+
 }

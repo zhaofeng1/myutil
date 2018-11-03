@@ -281,11 +281,42 @@ public class StringTest {
 
 	@Test
 	public void test39() {
-		for (int i = 100000000; i < 150000000; i++) {
-			if (i % 1000000 == 0) {
+		for (int i = 0; i < 4000000; i++) {
+			if (i % 100000 == 0) {
 				System.out.println(i);
 			}
 		}
+	}
+
+	@Test
+	public void test40() {
+		String str = "AD,AE,AF,AG,AI,AL,AM,AO,AR,AT,AU,AZ,BB,BD,BE,BF,BG,BH,BI,BJ,BL,BM,BN,BO,BR,BS,BW,BY,BZ,CA,CF,CG,CH,CK,CL,CM,CN,CO,CR,CS,CU,CY,CZ,DE,DJ,DK,DO,DZ,EC,EE,EG,ES,ET,FI,FJ,FR,GA,GB,GD,GE,GF,GH,GI,GM,GN,GR,GT,GU,GY,HK,HN,HT,HU,ID,IE,IL,IQ,IR,IS,IT,JM,JO,JP,KE,KG,KH,KP,KR,KT,KW,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,MG,ML,MM,MN,MO,MS,MT,MU,MV,MW,MX,MY,MZ,NA,NE,NG,NI,NL,NO,NP,NR,NZ,OM,PA,PE,PF,PG,PH,PK,PL,PR,PT,PY,QA,RO,RU,SA,SB,SC,SD,SE,SG,SI,SK,SL,SM,SN,SO,SR,ST,SV,SY,SZ,TD,TG,TH,TJ,TM,TN,TO,TR,TT,TW,TZ,UA,UG,US,UY,UZ,VC,VE,VN,YE,YU,ZA,ZM,ZR,ZW";
+		//		String sql =  "insert into feed_offer_target(offer_id,app_info_id,code,status,manual,jump_counter) values";
+		String values = "(179007230,10632,'%s','active',1,-1),";
+		for (String s : str.split(",")) {
+			System.out.println(String.format(values, s));
+		}
+
+	}
+
+	@Test
+	public void test41() {
+		String str = "http://cdn-3s.mobvista.com/upload/default/5bc051fdd4bb0.png?p1=867303.11874&p2=f0b9d82fa6069fa8bdb27147dd596fd134d3aa3614246e7fa58f4bba2b5e38b6";
+		String wenhao = String.valueOf((char) 63);
+
+		System.out.println(wenhao);
+		System.out.println(str.substring(0, str.indexOf(wenhao)));
+
+	}
+
+	@Test
+	public void test42() {
+		String str = "asdfsaf\t123";
+
+		System.out.println(str.contains("\t"));
+		System.out.println(str.replace("\t", ""));
+
+
 	}
 
 }

@@ -419,10 +419,10 @@ public class HttpRequestUtils {
 
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		String url = args[0];
-		
+
 		System.out.println("url:" + url);
 		HttpHost host = new HttpHost("10.230.10.30", 8000);
-		
+
 		ResponseEntity entity = HttpRequestUtils.requestByProxyNoAuth(url, HttpRequestUtils.GET_METHOD, host, null);
 		System.out.println(entity.content);
 	}
