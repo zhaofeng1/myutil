@@ -26,6 +26,7 @@ public class CycleTask {
 		long delay = 0;
 		executorService.scheduleAtFixedRate(new MyThread(), 3, 1, TimeUnit.MILLISECONDS);
 
+
 	}
 
 	public long getDelay() {
