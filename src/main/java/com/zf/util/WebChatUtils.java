@@ -34,7 +34,7 @@ public class WebChatUtils {
 	/**
 	 * 微信企业号的corpSecret dsp使用
 	 */
-	private static final String CORSECRET_DSP = "sgBNXtGvG6LkzZFdNCHvkCpM7oKOOMYPc4zsbOIlqpTdEacl9hHeVzbtW3gUgpZf";
+	private static final String CORSECRET_DSP = "QfJVBWK1QAxykU_PR1wQg_DuVHDbpmCvIXkJKBwxd8OONREvCu0v02SDcDBPfXxw";
 
 	/**
 	 * agentid dsp alert
@@ -95,7 +95,7 @@ public class WebChatUtils {
 			contentMap.put("content", message);
 			map.put("text", contentMap);
 			map.put("touser", user);
-			map.put("agentid", "3");//dsp预警
+			map.put("agentid", "25");//dsp预警
 			CloseableHttpResponse response = null;
 			try {
 				HttpPost post = new HttpPost(url);
@@ -129,6 +129,7 @@ public class WebChatUtils {
 	public static void main(String[] args) {
 		//		sendMessage("zhaofeng|zhouyan", "test!!");
 		sendMessage("zhaofeng", "test!!");
+		//		System.out.println("aaaaa");
 	}
 
 }

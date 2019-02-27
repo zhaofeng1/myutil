@@ -540,6 +540,26 @@ public class FileTest {
 	}
 
 	@Test
+	public void getOfferSplit() throws IOException {
+		String path = "E:/logs/offertest/offerids1.txt";
+		String path1 = "E:/logs/offertest/offerids2.txt";
+		List<String> list = FileUtils.readLines(new File(path));
+		int i = 1;
+		//		String offerids = "";
+		List<String> result = new ArrayList<String>();
+		for (String s : list) {
+			//			offerids += s + ",";
+			//			if (i % 300 == 0) {
+				//				System.out.println(offerids);
+				result.add("curl -i 'http://sg-ad.altamob.com/offertest/admin/asyncTrackingOffers?offerids=" + s + "'");
+				//				offerids = "";
+			//			}
+			i++;
+		}
+		FileUtils.writeLines(new File(path1), result);
+	}
+
+	@Test
 	public void test26() throws IOException {
 		String path = "E:/logs/handle/tid_handle";
 		List<String> list = FileUtils.readLines(new File(path));
@@ -547,6 +567,28 @@ public class FileTest {
 			System.out.println(s.substring(0, s.indexOf("&")));
 		}
 
+	}
+
+	@Test
+	public void test28() throws IOException {
+		String path = "D:/Documents/Downloads/Mytable_1.sql";
+		String path1 = "D:/Documents/Downloads/Mytable_2.sql";
+		List<String> list = FileUtils.readLines(new File(path));
+		List<String> result = new ArrayList<String>();
+		String title = "INSERT INTO MY_TABLE(android_id, version, sdk_version, language, country, user_agent) VALUES";
+		int i = 1;
+		result.add(title);
+		for (String s : list) {
+			if (i % 10000 == 0) {
+				result.add(s.substring(0, s.length() - 1) + ";");
+				result.add(title);
+			} else {
+				result.add(s);
+			}
+			i++;
+		}
+
+		FileUtils.writeLines(new File(path1), result);
 	}
 
 	@Test

@@ -53,4 +53,12 @@ public class RandomTest {
 			System.out.println(r.nextBoolean());
 		}
 	}
+
+	@Test
+	public void test4() {
+		Random r = new Random();
+		for (int i = 0; i < 100; i++) {
+			System.out.println(r.nextInt(9000000) + 1000000);
+		}
+	}
 }

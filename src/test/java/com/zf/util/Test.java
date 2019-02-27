@@ -122,7 +122,8 @@ public class Test {
 
 	public static String doGet() throws Exception {
 		//		String url = "http://api.mobilekris.com/index.php?m=advert&p=getoffer&app_id=5&app_key=c4b76f4a25e95bb50d4e0a59bdc91a5b&page=1&pagesize=50";
-		String url = "http://api.appflood.com/s2s_get_p_ads?token=85a33e071bd30c1b&pagesize=100&platform=Android&pricetype=cpi%7Ccpa&creatives=0&page=1";
+		//		String url = "http://api.appflood.com/s2s_get_p_ads?token=85a33e071bd30c1b&pagesize=100&platform=Android&pricetype=cpi%7Ccpa&creatives=0&page=1";
+		String url = "https://api.polymob.com/cmp?v=1.0&token=eanpIi1PourZA23FGj5TnyUUwCL07h8Z";
 		URL localURL = new URL(url);
 		URLConnection connection = localURL.openConnection();
 		HttpURLConnection httpURLConnection = (HttpURLConnection) connection;

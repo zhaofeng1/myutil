@@ -234,7 +234,8 @@ public class HttpUtil {
 			//					new ArrayList<NameValuePair>(),
 			//					"http://pixel.admobclick.com/v1/ad/click?subsite_id=30222&transaction_id=&id=162&offer_id=13653614&geo=US&aid=a77d7d94853bab75&client_version=&gaid=6c373aba-f756-413f-ac78-f1339f6a1acc&tmark=1487311806351&p=&app_name=server.client&sdk_version=3.1&app_version=1.0.0",
 			//					30000, 30000, "localhost", 1080);
-			result = requestGet("http://api.appflood.com/s2s_get_p_ads?token=85a33e071bd30c1b&pagesize=5000&platform=Android&pricetype=cpi%7Ccpa&creatives=0&page=1");
+			//			result = requestGet("http://api.appflood.com/s2s_get_p_ads?token=85a33e071bd30c1b&pagesize=5000&platform=Android&pricetype=cpi%7Ccpa&creatives=0&page=1");
+			result = requestGet("http://myip.ipip.net");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

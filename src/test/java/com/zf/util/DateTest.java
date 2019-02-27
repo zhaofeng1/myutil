@@ -20,6 +20,16 @@ public class DateTest {
 	}
 
 	@Test
+	public void test4() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM dd HH");
+		String value_hour = "21";
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.HOUR_OF_DAY, Integer.valueOf(value_hour) * -1);
+
+		System.out.println(sdf.format(c.getTime()));
+	}
+
+	@Test
 	public void test1() throws ParseException {
 		//		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");

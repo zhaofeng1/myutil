@@ -1,9 +1,18 @@
 package com.zf.util;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.imageio.ImageIO;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
 public class Md5Test {
@@ -30,6 +39,53 @@ public class Md5Test {
 	@Test
 	public void md5Test1() {
 		System.out.println(md5("3bbeb2d3f1e29dd61357268ba56286a0"));
+	}
+
+	@Test
+	public void fileMd5Test() {
+
+		String path = "E:/logs/filemd5/a.jpg";
+		String path1 = "E:/logs/filemd5/a1.jpg";
+		String path2 = "E:/logs/filemd5/b.png";
+		String path3 = "E:/logs/filemd5/b1.jpg";
+		try {
+			String md5 = DigestUtils.md5Hex(new FileInputStream(path));
+			String md51 = DigestUtils.md5Hex(new FileInputStream(path1));
+			System.out.println("path md5:" + md5);
+			System.out.println("path1 md5:" + md51);
+			String md52 = DigestUtils.md5Hex(new FileInputStream(path2));
+			String md53 = DigestUtils.md5Hex(new FileInputStream(path3));
+			System.out.println("path2 md5:" + md52);
+			System.out.println("path3 md5:" + md53);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void fileMd5Test1() {
+
+		String path = "E:/logs/filemd5/a.jpg";
+
+		try {
+			InputStream is = new FileInputStream(path);
+			String md5 = DigestUtils.md5Hex(is);
+			System.out.println("md5:" + md5);
+			BufferedImage src = ImageIO.read(new File(path));
+
+			System.out.println("width:" + src.getWidth());
+			is.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
