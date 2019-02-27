@@ -24,6 +24,7 @@ public class CycleTask {
 		}
 		long interval = 60 * 60 * 1000;//1 小时
 		long delay = 0;
+
 		executorService.scheduleAtFixedRate(new MyThread(), 3, 1, TimeUnit.MILLISECONDS);
 
 
