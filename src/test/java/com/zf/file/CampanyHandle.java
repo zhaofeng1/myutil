@@ -79,6 +79,7 @@ public class CampanyHandle {
 		//			System.out.println(String.format(sql, camMap.get(s).getJc(), camMap.get(s).getQc(), camMap.get(s).getZt()));
 		//		}
 
+
 		String relationSql = "insert into demand_campany_department_relation(type,campany_info_id,department_id,system_code,name) values('1','%s','%s','%s','%s');";
 		for (String s : relMap.keySet()) {
 			System.out.println(String.format(relationSql, relMap.get(s).getCamId(), relMap.get(s).getDepId(), s, relMap.get(s).getName()));
