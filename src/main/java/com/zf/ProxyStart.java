@@ -43,6 +43,7 @@ public class ProxyStart {
 				result += line;
 			}
 		} catch (Exception e) {
+
 			System.out.println("发送GET请求出现异常！" + e);
 			e.printStackTrace();
 		}
