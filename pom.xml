@@ -101,6 +101,11 @@
 			<version>2.7.2</version>
 		</dependency>
 		<!-- jedis -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>1.46</version>
+		</dependency>
 
 	</dependencies>
 	<build>

@@ -1,10 +1,10 @@
 package com.zf.util;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import org.junit.Test;
 
 /**
  * random 测试
@@ -60,5 +60,10 @@ public class RandomTest {
 		for (int i = 0; i < 100; i++) {
 			System.out.println(r.nextInt(9000000) + 1000000);
 		}
+	}
+	@Test
+	public void test5() {
+		System.out.println((Math.random() + "").substring(2));
+
 	}
 }
