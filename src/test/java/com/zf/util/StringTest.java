@@ -381,6 +381,14 @@ public class StringTest {
         System.out.println(df.format(Double.valueOf(33) / Double.valueOf(53)));
     }
 
+	@Test
+	public void testRandomDouble() {
+		Random r = new Random();
+		for (int i = 0; i < 10; i++) {
+			System.out.println(r.nextDouble() + 2);
+		}
+	}
+
     @Test
     public void testStr1() {
 //        for (int i = 5; i < 10; i++) {
